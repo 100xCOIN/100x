@@ -1,3 +1,7 @@
+/**
+ *Submitted for verification at BscScan.com on 2021-04-07
+*/
+
 // SPDX-License-Identifier: MIT
 
 
@@ -707,6 +711,78 @@ contract Crowdsale is Context, ReentrancyGuard {
         uint256 value,
         uint256 amount
     );
+    
+    
+    uint256 private _openingTime;
+    uint256 private _closingTime;
+
+    /**
+     * Event for crowdsale extending
+     * @param newClosingTime new closing time
+     * @param prevClosingTime old closing time
+     */
+    event TimedCrowdsaleExtended(
+        uint256 prevClosingTime,
+        uint256 newClosingTime
+    );
+
+    /**
+     * @dev Reverts if not in crowdsale time range.
+     */
+    modifier onlyWhileOpen {
+        require(isOpen(), "TimedCrowdsale: not open");
+        _;
+    }
+
+
+    /**
+     * @return the crowdsale opening time.
+     */
+    function openingTime() public view returns (uint256) {
+        return _openingTime;
+    }
+
+    /**
+     * @return the crowdsale closing time.
+     */
+    function closingTime() public view returns (uint256) {
+        return _closingTime;
+    }
+
+    /**
+     * @return true if the crowdsale is open, false otherwise.
+     */
+    function isOpen() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return
+            block.timestamp >= _openingTime && block.timestamp <= _closingTime;
+    }
+
+    /**
+     * @dev Checks whether the period in which the crowdsale is open has already elapsed.
+     * @return Whether crowdsale period has elapsed
+     */
+    function hasClosed() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return block.timestamp > _closingTime;
+    }
+
+    /**
+     * @dev Extend parent behavior requiring to be within contributing period.
+     * @param beneficiary Token purchaser
+     * @param weiAmount Amount of wei contributed
+     */
+
+
+    /**
+     * @dev Extend crowdsale.
+     * @param newClosingTime Crowdsale closing time
+     */
+    function _extendTime(uint256 newClosingTime) internal {
+        emit TimedCrowdsaleExtended(_closingTime, newClosingTime);
+        _closingTime = newClosingTime;
+    }
+    
 
     /**
      * @param rate Number of token units a buyer gets per wei
@@ -720,7 +796,8 @@ contract Crowdsale is Context, ReentrancyGuard {
         uint256 rate,
         address  wallet,
         IERC20 token,
-        IERC20 tokenElon
+        IERC20 tokenElon,
+        uint256 openingTimeParam, uint256 closingTimeParam
     ) public {
         require(rate > 0, "Crowdsale: rate is 0");
         require(wallet != address(0), "Crowdsale: wallet is the zero address");
@@ -728,6 +805,18 @@ contract Crowdsale is Context, ReentrancyGuard {
             address(token) != address(0),
             "Crowdsale: token is the zero address"
         );
+          require(
+            openingTimeParam >= block.timestamp,
+            "TimedCrowdsale: opening time is before current time"
+        );
+        // solhint-disable-next-line max-line-length
+        require(
+            closingTimeParam > openingTimeParam,
+            "TimedCrowdsale: opening time is not before closing time"
+        );
+
+        _openingTime = openingTimeParam;
+        _closingTime = closingTimeParam;
 
         _rate = rate;
         _wallet = wallet;
@@ -779,7 +868,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * another `nonReentrant` function.
      * @param beneficiary Recipient of the token purchase
      */
-    function buyTokens(address beneficiary, uint256 amount) public nonReentrant hasAllowance(beneficiary , amount) {
+    function buyTokens(address beneficiary, uint256 amount) public onlyWhileOpen nonReentrant hasAllowance(beneficiary , amount) {
         uint256 weiAmount = amount;
         _preValidatePurchase(beneficiary, weiAmount);
 
@@ -795,8 +884,6 @@ contract Crowdsale is Context, ReentrancyGuard {
         emit TokensPurchased(_msgSender(), beneficiary, weiAmount, tokens);
 
         _updatePurchasingState(beneficiary, weiAmount);
-
-        _postValidatePurchase(beneficiary, weiAmount);
         
         
     }
@@ -804,9 +891,6 @@ contract Crowdsale is Context, ReentrancyGuard {
     modifier hasAllowance(address sender , uint256 amount){
         require(_tokenElon.allowance(_msgSender() , address(this)) >= amount, 'Amount exceeds allowance');
         _;
-    }
-      function hasAllowanceCheck() public view returns(uint256) {
-        return _tokenElon.allowance(_msgSender() , address(this));
     }
     /**
      * @dev Validation of an incoming purchase. Use require statements to revert state when conditions are not met.
@@ -827,19 +911,6 @@ contract Crowdsale is Context, ReentrancyGuard {
         );
         require(weiAmount != 0, "Crowdsale: weiAmount is 0");
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
-    }
-
-    /**
-     * @dev Validation of an executed purchase. Observe state and use revert statements to undo rollback when valid
-     * conditions are not met.
-     * @param beneficiary Address performing the token purchase
-     * @param weiAmount Value in wei involved in the purchase
-     */
-    function _postValidatePurchase(address beneficiary, uint256 weiAmount)
-        internal
-        view
-    {
-        // solhint-disable-previous-line no-empty-blocks
     }
 
     /**
@@ -953,111 +1024,111 @@ contract AllowanceCrowdsale is Crowdsale {
  * @title TimedCrowdsale
  * @dev Crowdsale accepting contributions only within a time frame.
  */
-contract TimedCrowdsale is Crowdsale {
-    using SafeMath for uint256;
+// contract TimedCrowdsale is Crowdsale {
+//     using SafeMath for uint256;
 
-    uint256 private _openingTime;
-    uint256 private _closingTime;
+//     uint256 private _openingTime;
+//     uint256 private _closingTime;
 
-    /**
-     * Event for crowdsale extending
-     * @param newClosingTime new closing time
-     * @param prevClosingTime old closing time
-     */
-    event TimedCrowdsaleExtended(
-        uint256 prevClosingTime,
-        uint256 newClosingTime
-    );
+//     /**
+//      * Event for crowdsale extending
+//      * @param newClosingTime new closing time
+//      * @param prevClosingTime old closing time
+//      */
+//     event TimedCrowdsaleExtended(
+//         uint256 prevClosingTime,
+//         uint256 newClosingTime
+//     );
 
-    /**
-     * @dev Reverts if not in crowdsale time range.
-     */
-    modifier onlyWhileOpen {
-        require(isOpen(), "TimedCrowdsale: not open");
-        _;
-    }
+//     /**
+//      * @dev Reverts if not in crowdsale time range.
+//      */
+//     modifier onlyWhileOpen {
+//         require(isOpen(), "TimedCrowdsale: not open");
+//         _;
+//     }
 
-    /**
-     * @dev Constructor, takes crowdsale opening and closing times.
-     * @param openingTime Crowdsale opening time
-     * @param closingTime Crowdsale closing time
-     */
-    constructor(uint256 openingTime, uint256 closingTime) public {
-        // solhint-disable-next-line not-rely-on-time
-        require(
-            openingTime >= block.timestamp,
-            "TimedCrowdsale: opening time is before current time"
-        );
-        // solhint-disable-next-line max-line-length
-        require(
-            closingTime > openingTime,
-            "TimedCrowdsale: opening time is not before closing time"
-        );
+//     /**
+//      * @dev Constructor, takes crowdsale opening and closing times.
+//      * @param openingTime Crowdsale opening time
+//      * @param closingTime Crowdsale closing time
+//      */
+//     constructor(uint256 openingTime, uint256 closingTime) public {
+//         // solhint-disable-next-line not-rely-on-time
+//         require(
+//             openingTime >= block.timestamp,
+//             "TimedCrowdsale: opening time is before current time"
+//         );
+//         // solhint-disable-next-line max-line-length
+//         require(
+//             closingTime > openingTime,
+//             "TimedCrowdsale: opening time is not before closing time"
+//         );
 
-        _openingTime = openingTime;
-        _closingTime = closingTime;
-    }
+//         _openingTime = openingTime;
+//         _closingTime = closingTime;
+//     }
 
-    /**
-     * @return the crowdsale opening time.
-     */
-    function openingTime() public view returns (uint256) {
-        return _openingTime;
-    }
+//     /**
+//      * @return the crowdsale opening time.
+//      */
+//     function openingTime() public view returns (uint256) {
+//         return _openingTime;
+//     }
 
-    /**
-     * @return the crowdsale closing time.
-     */
-    function closingTime() public view returns (uint256) {
-        return _closingTime;
-    }
+//     /**
+//      * @return the crowdsale closing time.
+//      */
+//     function closingTime() public view returns (uint256) {
+//         return _closingTime;
+//     }
 
-    /**
-     * @return true if the crowdsale is open, false otherwise.
-     */
-    function isOpen() public view returns (bool) {
-        // solhint-disable-next-line not-rely-on-time
-        return
-            block.timestamp >= _openingTime && block.timestamp <= _closingTime;
-    }
+//     /**
+//      * @return true if the crowdsale is open, false otherwise.
+//      */
+//     function isOpen() public view returns (bool) {
+//         // solhint-disable-next-line not-rely-on-time
+//         return
+//             block.timestamp >= _openingTime && block.timestamp <= _closingTime;
+//     }
 
-    /**
-     * @dev Checks whether the period in which the crowdsale is open has already elapsed.
-     * @return Whether crowdsale period has elapsed
-     */
-    function hasClosed() public view returns (bool) {
-        // solhint-disable-next-line not-rely-on-time
-        return block.timestamp > _closingTime;
-    }
+//     /**
+//      * @dev Checks whether the period in which the crowdsale is open has already elapsed.
+//      * @return Whether crowdsale period has elapsed
+//      */
+//     function hasClosed() public view returns (bool) {
+//         // solhint-disable-next-line not-rely-on-time
+//         return block.timestamp > _closingTime;
+//     }
 
-    /**
-     * @dev Extend parent behavior requiring to be within contributing period.
-     * @param beneficiary Token purchaser
-     * @param weiAmount Amount of wei contributed
-     */
-    function _preValidatePurchase(address beneficiary, uint256 weiAmount)
-        internal
-        view
-        onlyWhileOpen
-    {
-        super._preValidatePurchase(beneficiary, weiAmount);
-    }
+//     /**
+//      * @dev Extend parent behavior requiring to be within contributing period.
+//      * @param beneficiary Token purchaser
+//      * @param weiAmount Amount of wei contributed
+//      */
+//     function _preValidatePurchase(address beneficiary, uint256 weiAmount)
+//         internal
+//         view
+//         onlyWhileOpen
+//     {
+//         super._preValidatePurchase(beneficiary, weiAmount);
+//     }
 
-    /**
-     * @dev Extend crowdsale.
-     * @param newClosingTime Crowdsale closing time
-     */
-    function _extendTime(uint256 newClosingTime) internal {
-        emit TimedCrowdsaleExtended(_closingTime, newClosingTime);
-        _closingTime = newClosingTime;
-    }
+//     /**
+//      * @dev Extend crowdsale.
+//      * @param newClosingTime Crowdsale closing time
+//      */
+//     function _extendTime(uint256 newClosingTime) internal {
+//         emit TimedCrowdsaleExtended(_closingTime, newClosingTime);
+//         _closingTime = newClosingTime;
+//     }
     
-     function finishSale() internal {
-        _closingTime = now;
-    }
-}
+//      function finishSale() internal {
+//         _closingTime = now;
+//     }
+// }
 
-contract Swap100x is Ownable, TimedCrowdsale, AllowanceCrowdsale {
+contract Swap100x is Ownable,Crowdsale, AllowanceCrowdsale {
     using SafeMath for uint256;
 
     uint256 _openingTime = now;
@@ -1066,15 +1137,14 @@ contract Swap100x is Ownable, TimedCrowdsale, AllowanceCrowdsale {
     address _wallet = address(
         0xA9f779B384845C510Bcf45F654a6b9C7f32D2985
     );
-    IERC20 _token = IERC20(0x728E34a07f1E5eC740A080D3951236c3D7CF33cF);
+    IERC20 _token = IERC20(0x4cC20A024324B6c487f50Ba448999Ae29f8F6022);
     IERC20 _tokenElon = IERC20(0xa58968A07b9fc6F53dEc772486C8309320765Ab3);
     address _tokenWallet = address(0x05564Fd931d363009332B980d7E31dC3f5f230C8);
 
     constructor()
         public
-        Crowdsale(_rate, _wallet, _token, _tokenElon)
+        Crowdsale(_rate, _wallet, _token, _tokenElon, _openingTime, _closingTime)
         AllowanceCrowdsale(_tokenWallet)
-        TimedCrowdsale(_openingTime, _closingTime)
     {
         // solhint-disable-previous-line no-empty-blocks
     }

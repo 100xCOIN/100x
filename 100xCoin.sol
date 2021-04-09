@@ -859,7 +859,7 @@ contract ERC20 is Ownable, Pausable,ReentrancyGuard,Blacklist, IERC20 {
         require(!isBlackListed(sender) , "Sender Blacklisted");
         require(!isBlackListed(recipient) , "Reciever Blacklisted");
         _transfer(sender, recipient, amount);
-        _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance");
+       _allowances[sender][_msgSender()] =  _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance");
         return true;
     }
 
@@ -927,8 +927,20 @@ contract ERC20 is Ownable, Pausable,ReentrancyGuard,Blacklist, IERC20 {
         uint256 manualBurn = (_amount.mul(burnPercentageManual)).div(100000000000000000000);
           uint256 devAmount = (_amount.mul(toDevelopers)).div(100000000000000000000);
            uint256 liquidityAmount = (_amount.mul(toLiquidity)).div(100000000000000000000);
+           
           _amount = _amount.sub(autoBurn).sub(manualBurn).sub(liquidityAmount).sub(devAmount);
+         uint256 _amountSender = amount.sub(autoBurn);
           
+           _burn(sender,autoBurn);
+          _balances[dev] = _balances[dev].add(manualBurn).add(devAmount);
+          emit Transfer(sender, dev, manualBurn.add(devAmount));
+          
+          _balances[sender] = _balances[sender].sub(_amountSender, "ERC20: transfer amount exceeds balance");
+          _balances[recipient] = _balances[recipient].add(_amount);
+          emit Transfer(sender, recipient, _amount);
+          
+           _balances[address(this)] = _balances[address(this)].add(liquidityAmount);
+          emit Transfer(sender, address(this), liquidityAmount);
       
         // is the token balance of this contract address over the min number of
         // tokens that we need to initiate a swap + liquidity lock?
@@ -949,22 +961,15 @@ contract ERC20 is Ownable, Pausable,ReentrancyGuard,Blacklist, IERC20 {
             contractTokenBalance = numTokensSellToAddToLiquidity;
             //add liquidity
             swapAndLiquify(contractTokenBalance);
-        }else{
-          _balances[address(this)] = _balances[address(this)].add(liquidityAmount);
-          emit Transfer(sender, address(this), liquidityAmount);
         }
           
-          _burn(sender,autoBurn);
-          _balances[dev] = _balances[dev].add(manualBurn).add(devAmount);
-          emit Transfer(sender, dev, manualBurn.add(devAmount));
-          _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
-          _balances[recipient] = _balances[recipient].add(_amount);
+     
         }else{
             _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
             _balances[recipient] = _balances[recipient].add(amount);
+             emit Transfer(sender, recipient, amount);
         }
         
-        emit Transfer(sender, recipient, amount);
     }
 
     function swapAndLiquify(uint256 contractTokenBalance) private  {
@@ -1161,8 +1166,8 @@ abstract contract ERC20Burnable is Context, ERC20 {
 }
 
 
-contract Token100xCOIN is ERC20, ERC20Burnable {
-    string _name = "100xCOIN";
+contract Token100xCoin is ERC20, ERC20Burnable {
+    string _name = "100xCoin";
     string _symbol = "100x";
     uint256 _initialSupply = 935312500000000 * 10**18;
     /**
