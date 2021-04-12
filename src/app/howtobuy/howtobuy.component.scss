@@ -1,0 +1,364 @@
+.main-banner {
+    background-image: url(../../assets/100xCoin-assets/how-to-buy/header-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // padding: 130px 0;
+    // height: 100vh;
+
+    .inner-box {
+        h1 {
+            margin-top: 50px;
+        }
+        .list-inline {
+            margin-top: 150px;
+        }
+    }
+
+    .inner-socail {
+        a {
+            img {
+                width: 30px;
+            }
+        }
+    }
+
+    .navbar-nav {
+        margin-left: 410px;
+        li {
+            a {
+                color: #fff;
+                padding: 10px;
+
+                &:hover {
+                    color: purple;
+                }
+            }
+        }
+    }
+
+    h1,p {
+        margin-bottom: 30px;
+    }
+}
+
+.popular {
+    background-image: url(../../assets/100xCoin-assets/landing-page/about-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // padding: 130px 0;
+    // height: 100vh;
+    .fa {
+        color: yellow;
+    }
+    h2 {
+        margin-bottom: 80px;
+    }
+    h4 {
+        font-weight: normal !important;
+    }
+
+    .inner-tiles {
+        background-image: url(../../assets/100xCoin-assets/landing-page/box-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 10px 10px 30px;
+    text-align: center;
+    margin-bottom: 10px;
+        h6 {
+            text-align: left;
+        }
+
+    img {
+        text-align: center;
+        width: 180px;
+    }
+    }
+}
+
+.doing {
+    background-image: url(../../assets/100xCoin-assets/landing-page/roadmap-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    // padding: 130px 0;
+    // height: 100vh;
+}
+
+.howitworks {
+    background-color: #20043e;
+    .inner-heading {
+        p{
+            margin-bottom: 40px;
+        }
+    }
+
+    .inner-bg {
+        background-image: url(../../assets/100xCoin-assets/landing-page/last-update-bg.png);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 10px;
+        margin-top: 30px;
+        
+
+    }
+    .inner-tile {
+        img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+.fourth{
+    background-color: #20043e;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .row {
+         margin-left: 0px!important; 
+         margin-right: 0px!important; 
+    }
+    .form-group {
+         margin-bottom: 0px!important; 
+    }
+    .main-round{
+        .brdr{
+            background-color: #D213FB;
+            padding: 10px;
+            border-radius: 15px;
+
+            .inner-text1{
+                .for-new {
+                    display: block;
+                    width: 100%;
+                    height: calc(1.5em + .75rem + 2px);
+                    padding: .375rem .75rem;
+                    font-size: 1.25rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #20043e;
+                    background-color: #fff;
+                    border: none;
+                    background-clip: padding-box;
+                    border-radius: 20px;
+                    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                    text-align: center;
+                
+                }
+            }
+        
+        }
+     } 
+    h5{
+        color: #Fff;
+    }
+    .btn-comon {
+        background: #3713fd; /* Old browsers */
+        background: -moz-linear-gradient(left,  #3713fd 0%, #a908f7 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  #3713fd 0%,#a908f7 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  #3713fd 0%,#a908f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3713fd', endColorstr='#a908f7',GradientType=1 ); /* IE6-9 */
+        
+        color: #fff;
+        border-radius: 10px;
+        padding: 7px 14px;
+        font-size: 18px;
+            }
+}
+
+.makeyourown {
+    // background-image: url(../../../../assets/myom-landing-page-assets/make-your-own-menu-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .inner-text {
+        color: #fff;
+
+        h3 {
+            font-size: 45px;
+        }
+
+        h2 {
+            font-size: 55px;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+    }
+
+    .inner-text1{
+        .for-new {
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: white;
+            background-color: #fd8d0b;
+            border: none;
+            background-clip: padding-box;
+            border-radius: 20px;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            text-align: center;
+        
+        }
+    }
+}
+
+
+.footer {
+    background-color: #20043e;
+    padding-top: 60px;
+
+    .inner-form {
+        position: relative;
+        h1 {
+            position: absolute;
+            left: 0;
+            top: 40px; 
+        }
+    }
+
+    .inner-tile {
+        padding: 70px 0 0;
+
+        ul {
+            margin-top: 28px;
+        }
+    }
+
+    .links {
+        li {
+            a {
+                color: #fff;
+                padding: 10px;
+
+                &:hover {
+                    color: purple;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .main-banner {
+        .navbar-toggler {
+            background: #3713fd; /* Old browsers */
+background: -moz-linear-gradient(left,  #3713fd 0%, #a908f7 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  #3713fd 0%,#a908f7 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  #3713fd 0%,#a908f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3713fd', endColorstr='#a908f7',GradientType=1 ); /* IE6-9 */
+            padding: .25rem .75rem;
+            font-size: 1.25rem;
+            line-height: 1;
+            border-radius: .25rem;
+            opacity: .8;
+        }
+        .navbar-nav {
+            margin-left: 0px;
+            li {
+                a {
+                    color: #fff;
+                    padding: 10px 0;
+    
+                    &:hover {
+                        color: purple;
+                    }
+                }
+            }
+        }
+        
+    .inner-box {
+        h1 {
+            margin-top: 0px;
+        }
+        .list-inline {
+            margin-top: 30px;
+        }
+    }
+        h1,p {
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 44px !important;
+        }
+    }
+
+
+    .popular {
+        background-color: #f7f7f7;
+        .fa {
+            color: yellow;
+        }
+        h2 {
+            margin-bottom: 30px;
+        }
+        h4 {
+            font-weight: normal !important;
+        }
+    
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 5px 1px #eee;
+            margin-top: 15px;
+        }
+    
+        .card-body {
+            padding: 10px;
+    
+            .text-muted {
+                font-size: 10px;
+            }
+    
+            .texts-muted {
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .footer {
+        background-color: #20043e;
+        padding-top: 30px;
+    
+        .inner-form {
+            position: relative;
+            h1 {
+                position: absolute;
+                left: 0;
+                top: -10px; 
+            }
+        }
+    
+        .inner-tile {
+            text-align: left !important;
+            padding: 0px 0 0;
+    
+            ul {
+                margin-top: 20px!important;
+            }
+        }
+    
+        .links {
+            li {
+                a {
+                    color: #fff;
+                    padding: 10px;
+    
+                    &:hover {
+                        color: purple;
+                    }
+                }
+            }
+        }
+    }
+}

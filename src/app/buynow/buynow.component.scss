@@ -1,0 +1,263 @@
+.buy-now {
+    background-image: url(../../assets/100xCoin-assets/buy-now/header-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+     height: 100vh;
+    .active {
+        color: #20043e;
+    }
+    .inner-box {
+        h1 {
+            margin-top: 50px;
+        }
+        .list-inline {
+            margin-top: 150px;
+        }
+    }
+
+    .inner-socail {
+        a {
+            img {
+                width: 30px;
+            }
+        }
+    }
+
+    .navbar-nav {
+        margin-left: 410px;
+        li {
+            a {
+                color: #fff;
+                padding: 10px;
+
+                &:hover {
+                    color: #a908f7;
+                }
+            }
+        }
+    }
+
+    h1,p {
+        margin-bottom: 15px;
+    }
+
+    .content{
+
+        .inner-content{
+            background-image: url(../../assets/100xCoin-assets/buy-now/swap-now-bg.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 20px;
+            border-radius: 8px;
+
+            .connet {
+                .modal-dialog {
+                    max-width: 690px;
+                    margin-top: 222px;
+
+                    .modal-content {
+                        background-color: rgba(34, 5, 65, .9);
+                        border-radius: 10px;
+                        padding: 10px;
+
+                        .inner-wallet {
+                            padding: 10px;
+                            border-radius: 10px;
+                            margin: 20px 0;
+                            background: transparent;
+                            border: none;
+                            color: white;
+                            &:hover {
+                                background: #220541;
+                                padding: 0px;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .for-bg {
+                background-image: url(../../assets/100xCoin-assets/landing-page/box-bg.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                padding: 0px;
+                border-radius: 8px;
+
+                input {
+                    border: none;
+                    color: #fff;
+                }
+                .form-control {
+                    display: block;
+                    width: 100%;
+                    height: calc(1.5em + .75rem + 2px);
+                    /* padding: .375rem .75rem; */
+                    font-size: 2rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #fff;
+                    background-color: transparent;
+                    background-clip: padding-box;
+                    /* border: 1px solid #ced4da; */
+                    /* border-radius: .25rem; */
+                    /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+                    margin: 0px;
+                }
+            }
+
+            .inner-wrap{
+                .eth{
+                    position: relative;
+                    top: 31px;
+                    }
+                    .form{
+                        .form-group{
+                            margin: 0;
+                        }
+                    }
+                }
+        }
+
+       
+    }
+       
+
+}
+
+.footer {
+    background-color: #20043e;
+    padding-top: 60px;
+
+    .inner-form {
+        position: relative;
+        h1 {
+            position: absolute;
+            left: 0;
+            top: 40px; 
+        }
+    }
+
+    .inner-tile {
+        padding: 70px 0 0;
+
+        ul {
+            margin-top: 28px;
+        }
+    }
+
+    .links {
+        li {
+            a {
+                color: #fff;
+                padding: 10px;
+
+                &:hover {
+                    color: purple;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px)
+ {
+    p {
+        font-size: 20px;
+    }
+    .buy-now {
+        .navbar-toggler {
+            background: #3713fd; /* Old browsers */
+            background: -moz-linear-gradient(left,  #3713fd 0%, #a908f7 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left,  #3713fd 0%,#a908f7 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right,  #3713fd 0%,#a908f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3713fd', endColorstr='#a908f7',GradientType=1 ); /* IE6-9 */
+            padding: .25rem .75rem;
+            font-size: 1.25rem;
+            line-height: 1;
+            border-radius: .25rem;
+            opacity: .8;
+        }
+        .navbar-nav {
+            margin-left: 0px;
+            li {
+                a {
+                    color: #fff;
+                    padding: 10px 0;
+    
+                    &:hover {
+                        color: #a908f7;
+                    }
+                }
+            }
+        }
+        
+    .inner-box {
+        h1 {
+            margin-top: 0px;
+        }
+        .list-inline {
+            margin-top: 30px;
+        }
+    }
+        h1,p {
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 44px !important;
+        }
+
+        .connet {
+            .modal-dialog {
+                max-width: 690px;
+                margin-top: 222px;
+            }
+
+           
+        }
+
+        .content{
+            .img-right{
+                display: none;
+            }
+        }
+    }
+
+    .footer {
+        background-color: #20043e;
+        padding-top: 750px;
+    
+        .inner-form {
+            position: relative;
+            h1 {
+                position: absolute;
+                left: 0;
+                top: 73px; 
+            }
+        }
+    
+        .inner-tile {
+            text-align: left !important;
+            padding: 0px 0 0;
+    
+            ul {
+                margin-top: 20px;
+            }
+        }
+    
+        .links {
+            li {
+                a {
+                    color: #fff;
+                    padding: 10px;
+    
+                    &:hover {
+                        color: purple;
+                    }
+                }
+            }
+        }
+    }
+}

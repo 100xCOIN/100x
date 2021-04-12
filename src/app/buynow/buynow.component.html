@@ -1,0 +1,281 @@
+<section class="buy-now ">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" routerLink="/" >
+                <img src="../../assets/100xCoin-assets/landing-page/logo.png" alt="" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/">WELCOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/whitepaper">WHITE PAPER</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/howtobuy">HOW TO BUY</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <a *ngIf="filter" class="btn-common" routerLink="/swap-now">Connected</a>
+                </form>
+            </div>
+        </nav>
+        <div class="row ptb content">
+            <div class="col-sm-3">
+                <div class="img-left">
+                    <img src="../../assets/100xCoin-assets/buy-now/astronaut-left.png" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="inner-content">
+                            <h2>SWAP NOW</h2>
+                            <p><strong>Swap 100xELON for 100xCoin</strong></p>
+                        <div class="inner-wrap">
+                            <p class="main-clr">You Pay</p>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form for-bg">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <!-- <label>From</label> -->
+                                                    <input type="text" class="form-control" id="vals" name="val"  placeholder="1" [(ngModel)]="model.val" #val="ngModel" (keyup)="filterCatalogues($event.target.value)">
+                                                </div>
+                                                <div class="col-sm-3 text-center">
+                                                    <div class="pt-1">
+                                                        <img src="../../assets/100xCoin-assets/buy-now/elon.png" class="img-fluid">
+                                                        <h6><small></small></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <img src="../../assets/100xCoin-assets/buy-now/arrow.png" alt="" class="img-fluid" style="margin-top: 10px;">
+                            </div>
+                        </div>
+                        <div class="inner-wrap">
+                            <p class="main-clr">You Receive</p>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form for-bg">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <!-- <label>To</label> -->
+                                                    <input type="text" class="form-control" id="vals" name="val"  placeholder="1" [(ngModel)]="model.val" #val="ngModel">
+                                                </div>
+                                                <div class="col-sm-3 text-center">
+                                                    <div class="pt-1">
+                                                        <img src="../../assets/100xCoin-assets/buy-now/logo-small.png" class="img-fluid">
+                                                        <h6><small></small></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="connet">
+                                    <button *ngIf="!filter" type="button" class="btn-common" data-toggle="modal" data-target="#exampleModalLong" style="display: inline-block; width: 100%; text-align: center; margin-top: 15px; padding-top: 11px;">
+                                       <h4>Connect Wallet</h4> 
+                                      </button>
+                                    <!-- <a *ngIf="!filter" class="btn-common" data-toggle="modal" data-target="#exampleModal" style="display: inline-block; width: 100%; text-align: center; margin-top: 15px; padding-top: 11px;">
+                                        <h4>WALLET CONNECTED </h4> 
+                                      </a> -->
+                                    <a  *ngIf="filter && !resapproveof" class="btn-common"  style="display: inline-block; width: 100%; text-align: center; margin-top: 15px;" (click)="approve()">
+                                        <h4>Approve</h4> 
+                                    </a>
+                                      <a  *ngIf="filter && resapproveof" class="btn-common" type="button" style="display: inline-block; width: 100%; text-align: center; margin-top: 15px;" (click)="swap()">
+                                        <h4>Swap</h4> 
+                                      </a>
+                                      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 text-center">
+                                                        <div class="inner-side">
+                                                            <h3>Connect Wallet</h3>
+                                                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat nisi voluptatum adipisci veritatis amet,</p> -->
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <button class="inner-wallet" (click)="enableMetamaskwithtoken()" data-dismiss="modal">
+                                                                    <ul class="list-inline">
+                                                                        <li class="list-inline-item">
+                                                                            <div class="inner-wrapper">
+                                                                                <img src="../../assets/100xCoin-assets/buy-now/metamask-logo.png" alt="" class="img-fluid" style="width: 80px;">
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                          <div class="inner-wrapper">
+                                                                              <h4>MetaMask</h4>
+                                                                          </div>
+                                                                      </li>
+                                                                    </ul>
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                              <button class="inner-wallet"  (click)="trustWallet()">
+                                                                  <ul class="list-inline">
+                                                                      <li class="list-inline-item">
+                                                                          <div class="inner-wrapper">
+                                                                              <img src="../../assets/100xCoin-assets/buy-now/trust-wallet-logo.png" alt=""  class="img-fluid" style="width: 80px;">
+                                                                          </div>
+                                                                      </li>
+                                                                      <li class="list-inline-item">
+                                                                        <div class="inner-wrapper">
+                                                                            <h4>Trust Wallet</h4>
+                                                                        </div>
+                                                                    </li>
+                                                                  </ul>
+                                                              </button>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="img-right">
+                    <img src="../../assets/100xCoin-assets/buy-now/astronaut-right.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ <section class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="inner-form">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <img src="../../assets/100xCoin-assets/landing-page/icon.png" alt="" class="img-fluid" style="width: 80px;">
+                        </li>
+                        <li class="list-inline-item">
+                            <h1>100xCoin</h1>
+                        </li>
+                    </ul>
+                    <p>100xCoin is a fully transparent, community driven, deflationary cryptocurrency token that is a rebrand of the famous 100xElon meme coin.</p>
+                  
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="inner-tile text-right">
+                    <a routerLink="/swap-now" class="btn-common">Swap Now</a>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://t.me/Eloannouncements">
+                                <img src="../../assets/100xCoin-assets/landing-page/telegram.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/100XCoin_">
+                                <img src="../../assets/100xCoin-assets/landing-page/twitter.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href=" https://discord.gg/uHCyjbhJfG">
+                                <img src="../../assets/100xCoin-assets/landing-page/discord.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.youtube.com/channel/UCethqkKxL-Rce5yChOgBORQ">
+                                <img src="../../assets/100xCoin-assets/landing-page/youtube.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul  class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://www.youtube.com/channel/UCxjoBU68uYQJcYAKV-tWCgA/featured?app=desktop">
+                                <img src="../../assets/100xCoin-assets/landing-page/youtube.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href=" https://medium.com/100xcoin">
+                                <img src="../../assets/100xCoin-assets/landing-page/medium.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://t.me/ELOofficialchat">
+                                <img src="../../assets/100xCoin-assets/landing-page/telegram.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href=" https://www.instagram.com/100x.coin/?igshid=4kawtx085ekg">
+                                <img src="../../assets/100xCoin-assets/landing-page/instagram.png" alt="" style="width: 40px;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inner-line">
+                    <img src="../../assets/100xCoin-assets/landing-page/footer-line.png" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="inner-line">
+                    <h6>&copy; 100xCoin 2021. All Rights Reserved</h6>
+                </div>
+            </div>
+            
+            <div class="col-sm-4">
+                <div class="links">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a routerLink="/">
+                                WELCOME
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a routerLink="/whitepaper">
+                                WHITE PAPER
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a routerLink="/howtobuy">
+                                HOW TO BUY
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+   -->
+  

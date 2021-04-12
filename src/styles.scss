@@ -1,0 +1,148 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-size: 1.4rem;
+    font-family: 'Poppins';
+    color: #fff !important;
+    background-color: #20043e!important;
+    p{
+      font-size: 22px;
+  }
+  }
+  
+  .row {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .p-0 {
+    padding: 0px;
+  }
+  
+  // All transitions
+  div,ul,a,p,h1,h2,h3,h4,h5,h6,span {
+    -webkit-transition: background-color 1s ease-out;
+    -moz-transition: background-color 1s ease-out;
+    -o-transition: background-color 1s ease-out;
+    transition: background-color 1s ease-out;
+  }
+
+  textarea {
+      resize: none;
+      height: 60px;
+      width: 100%;
+  }
+  
+  a {
+    text-decoration: none !important;
+
+  }
+
+  
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  div,p,h1,h2,h3,h4,h5,h6 {
+    margin: 0 0;
+  }
+  
+  h1 {
+    font-size: 50px !important;
+    font-weight: 700 !important;
+  }
+
+
+  h2 {
+    font-size: 40px !important;
+    font-weight: 700 !important;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .main-clr {
+      color: #a608f6;
+  }
+
+  .navbar-nav{
+    margin-left: 500px !important;
+}
+
+  span.pinki {
+    background: #d213fb;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+ .btn-common {
+background: #3713fd; /* Old browsers */
+background: -moz-linear-gradient(left,  #3713fd 0%, #a908f7 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  #3713fd 0%,#a908f7 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  #3713fd 0%,#a908f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3713fd', endColorstr='#a908f7',GradientType=1 ); /* IE6-9 */
+
+     color: #fff;
+     padding: 5px 12px;
+     text-decoration: none;
+     margin-right: 10px;
+     
+     &:hover {
+                margin-top: 20px;
+                background: transparent;
+                border: 1px solid #ae0fd5;
+                transition: 0.5s ease-in-out;
+                font-size: 19px;
+                color: #fff;
+    }
+    &:focus {
+      outline: none;
+    
+ }}
+
+ .ptb {
+    padding: 60px 0;
+}
+
+.navbar-toggle {
+  background-color: #333;
+
+  .icon-bar {
+    background-color: #eee;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .nav-brand {
+    margin-left: 15px;
+  }
+
+  .carousel-indicators li {
+    background-color: #c9e35e !important;
+    position: relative;
+     top: 35px;
+  }
+ 
+  h1 {
+    font-size: 3.5rem !important;
+  }
+
+  h2 {
+    font-size: 2.5rem !important;
+    font-weight: bold;
+  }
+  .navbar-nav{
+    margin-left: 0px !important;
+}
+
+  .ptb {
+    padding: 20px 0;
+}
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
